@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "npm run frontend & npm run server",
-    "frontend": "cd frontend && npm run start",
+    "frontend": "cd client && npm run start",
     "server": "cd auth-server && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

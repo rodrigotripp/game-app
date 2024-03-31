@@ -1,7 +1,11 @@
 import React from "react"
 import { useNavigate } from "react-router-dom";
-
-const Home = (props) => {
+type props = {
+  loggedIn: boolean
+  username: string
+  setLoggedIn: (isLoggedIn:boolean) => void
+}
+const Home = (props: props) => {
     const { loggedIn, username } = props
     const navigate = useNavigate();
     

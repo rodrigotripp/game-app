@@ -1,16 +1,17 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './home';
-import Login from './login';
+import Home from './Home';
+import Login from './Login';
 import './App.css';
 import { useEffect, useState } from 'react';
 
-function App() {
+const App = () => {
   const [loggedIn, setLoggedIn] = useState(false)
   const [username, setUsername] = useState("")
 
   useEffect(() => {
     // Fetch the username and token from local storage
-    const user = JSON.parse(localStorage.getItem("user"))
+    const userRaw = localStorage.getItem("user");
+    const user = userRaw ? JSON.parse(userRaw) : null;
 
     // If the token/username does not exist, mark the user as logged out
     if (!user || !user.token) {
@@ -37,7 +38,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home username={username} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
-          <Route path="/login" element={<Login  setLoggedIn={setLoggedIn} setUsername={setUsername} />} />
+          <Route path="/login" element={<Login  setLoggedIn={setLoggedIn} setUserName={setUsername} />} />
         </Routes>
       </BrowserRouter>
     </div>

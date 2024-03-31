@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Login = (props) => {
+type props = {
+  setLoggedIn: (arg: boolean) => void;
+  setUserName: (arg: string) => void;
+}
+
+const Login = (props:props) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [usernameError, setUsernameError] = useState("")
@@ -33,7 +38,7 @@ const Login = (props) => {
         }
 
         // Check if username has an account associated with it
-        checkAccountExists(accountExists => {
+        checkAccountExists((accountExists:boolean) => {
             // If yes, log in 
             if (accountExists)
                 logIn()
@@ -48,7 +53,7 @@ const Login = (props) => {
     }
 
     // Call the server API to check if the given username ID already exists
-    const checkAccountExists = (callback) => {
+    const checkAccountExists = (callback: (arg: boolean) => void) => {
         fetch("http://localhost:3080/check-account", {
             method: "POST",
             headers: {
@@ -76,7 +81,7 @@ const Login = (props) => {
             if ('success' === r.message) {
                 localStorage.setItem("user", JSON.stringify({username, token: r.token}))
                 props.setLoggedIn(true)
-                props.setUsername(username)
+                props.setUserName(username)
                 navigate("/")
             } else {
                 window.alert("Wrong username or password")
