@@ -5,8 +5,11 @@
   "scripts": {
     "start": "npm run frontend & npm run server",
     "frontend": "cd client && npm run start",
+    "frontend-install": "cd client && npm install",
+    "server-install": "cd auth-server && npm install",
     "server": "cd auth-server && npm run start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-all": "npm run frontend-install & npm run server-install"
   },
   "keywords": [],
   "author": "",

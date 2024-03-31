@@ -1,3 +1,10 @@
+
+## Available Scripts for # Finnplay test task for front-end developer
+In the project directory, you can run:
+
+### `npm run install-all`
+### `npm run start`
+
 # Finnplay test task for front-end developer
 
 ## Task

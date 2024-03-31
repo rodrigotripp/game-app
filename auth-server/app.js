@@ -14,7 +14,6 @@ fs.readFile('./data.json', 'utf8', (err, data) => {
     console.error(err);
     return;
   }
-  console.log(data);
   games = data;
 });
 

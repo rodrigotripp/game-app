@@ -21,24 +21,24 @@ const App = () => {
 
     // If the token exists, verify it with the auth server to see if it is valid
     fetch("http://localhost:3080/verify", {
-            method: "POST",
-            headers: {
-                'jwt-token': user.token
-              }
-        })
-        .then(r => r.json())
-        .then(r => {
-            setLoggedIn('success' === r.message)
-            setUsername(user.username || "")
-        })
+      method: "POST",
+      headers: {
+        'jwt-token': user.token
+      }
+    })
+      .then(r => r.json())
+      .then(r => {
+        setLoggedIn('success' === r.message)
+        setUsername(user.username || "")
+      })
   }, [])
 
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home username={username} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
-          <Route path="/login" element={<Login  setLoggedIn={setLoggedIn} setUserName={setUsername} />} />
+          <Route path="/" element={<Home username={username} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
+          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUserName={setUsername} />} />
         </Routes>
       </BrowserRouter>
     </div>
