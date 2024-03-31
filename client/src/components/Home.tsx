@@ -1,5 +1,8 @@
 import React from "react"
+import Grid from './Grid';
+
 import { useNavigate } from "react-router-dom";
+
 type props = {
   loggedIn: boolean
   username: string
@@ -20,10 +23,10 @@ const Home = (props: props) => {
 
   return <div className="mainContainer">
     <div className={"titleContainer"}>
-      <div>Welcome!</div>
+      <div className="text-3xl font-bold text-orange-800 underline">Welcome!</div>
     </div>
     <div>
-      This is the home page.
+      <Grid/>
     </div>
     <div className={"buttonContainer"}>
       <input

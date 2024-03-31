@@ -14,7 +14,8 @@ fs.readFile('./data.json', 'utf8', (err, data) => {
     console.error(err);
     return;
   }
-  games = data;
+  games = JSON.parse(data);
+  console.log(games);
 });
 
 // Initialize Express app
