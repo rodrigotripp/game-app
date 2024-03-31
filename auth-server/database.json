@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "username": "player1",
+      "password": "$2b$10$DSO9qtAZd4kH4ZE3GkYlG.dr.TMCaJhoKQSYfTtsgmrIsI/tb1ILm"
+    },
+    {
+      "username": "player2",
+      "password": "$2b$10$0XJVl56Mv7cw7ho6EB7okeBW1vOnhLNDAOoo/3OraZ6xQwviN7OlC"
+    },
+    {
+      "username": "player3",
+      "password": "$2b$10$e2V5qTjtw6r/0zpU3oKFUesZCLwCFfBm2a9e.fU7YEwkM4Vm5T3JC"
+    }
+  ]
+}
