@@ -5,6 +5,10 @@ In the project directory, you can run:
 ### `npm run install-all`
 ### `npm run start`
 
+### 
+- username:`player1` password:`player1`
+- username:`player2` password:`player2`
+
 # Finnplay test task for front-end developer
 
 ## Task

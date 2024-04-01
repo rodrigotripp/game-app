@@ -1,7 +1,6 @@
-import React from "react"
 import Grid from './Grid';
-
 import { useNavigate } from "react-router-dom";
+import Nav from './Nav';
 
 type props = {
   loggedIn: boolean
@@ -21,24 +20,21 @@ const Home = (props: props) => {
     }
   }
 
-  return <div className="mainContainer">
-    <div className={"titleContainer"}>
-      <div className="text-3xl font-bold text-orange-800 underline">Welcome!</div>
+  return (
+    <div className="mainContainer">
+      <Nav onButtonClick={onButtonClick} username={username} loggedIn={loggedIn}></Nav>
+      <div className={"titleContainer"}>
+        {loggedIn ? 'Welcome!' : ''}
+      </div>
+      <div>
+        {
+          loggedIn
+            ? <Grid />
+            : ''
+        }
+      </div>
     </div>
-    <div>
-      <Grid/>
-    </div>
-    <div className={"buttonContainer"}>
-      <input
-        className={"inputButton"}
-        type="button"
-        onClick={onButtonClick}
-        value={loggedIn ? "Log out" : "Log in"} />
-      {(loggedIn ? <div>
-        Your username address is {username}
-      </div> : <div />)}
-    </div>
-  </div>
+  )
 }
 
 export default Home
