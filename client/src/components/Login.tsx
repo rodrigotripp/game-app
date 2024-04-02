@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../styles/login.css';
 
@@ -26,13 +26,10 @@ const Login = (props: props) => {
       setUsernameError("Please enter your username")
       return
     }
-
-
     if ("" === password) {
       setPasswordError("Please enter a password")
       return
     }
-
     if (password.length < 7) {
       setPasswordError("The password must be 8 characters or longer")
       return
@@ -78,7 +75,9 @@ const Login = (props: props) => {
       .then(r => r.json())
       .then(r => {
         if ('success' === r.message) {
-          localStorage.setItem("user", JSON.stringify({ username, token: r.token }))
+          localStorage.setItem("user",
+            JSON.stringify({ username, token: r.token })
+          )
           props.setLoggedIn(true)
           props.setUserName(username)
           navigate("/")
@@ -89,12 +88,12 @@ const Login = (props: props) => {
   }
 
   return (
-    <div className={"loginContainer"}>
-      <div className={"titleContainer"}>
+    <div className="loginContainer">
+      <div className="titleContainer">
         <div>Login</div>
       </div>
       <br />
-      <div className={"inputContainer"}>
+      <div className="inputContainer">
         <input
           value={username}
           placeholder="Enter your username here"
@@ -103,7 +102,7 @@ const Login = (props: props) => {
         <label className="errorLabel">{usernameError}</label>
       </div>
       <br />
-      <div className={"inputContainer"}>
+      <div className="inputContainer">
         <input
           value={password}
           placeholder="Enter your password here"
@@ -112,9 +111,9 @@ const Login = (props: props) => {
         <label className="errorLabel">{passwordError}</label>
       </div>
       <br />
-      <div className={"inputContainer"}>
+      <div className="inputContainer">
         <input
-          className={"inputButton"}
+          className="inputButton"
           type="button"
           onClick={onButtonClick}
           value={"Log in"} />
