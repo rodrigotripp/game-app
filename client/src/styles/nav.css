@@ -1,12 +1,11 @@
 nav {
-  height: 100px;
-  background-color: red;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  color: white;
-  padding: 10px;
+  padding: 5px;
+  border-color: gray;
+  border-width: thin;
 }
 
 nav div {
@@ -18,4 +17,12 @@ nav div {
 
 nav input.inputButton {
   width: auto;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  font-size: 64px;
+  font-weight: bolder;
+  align-items: center;
 }

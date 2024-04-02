@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { Game } from './Game';
 import { type game, type provider, type group } from '../types';
 import '../styles/grid.css';
+import { Filters } from './Filters';
 
 type dataType = {
-  games:[game],
-  providers: [provider],
-  groups: [group]
+  games: game[],
+  providers: provider[],
+  groups: group[]
 }
 
 const Grid = () => {
@@ -20,15 +21,25 @@ const Grid = () => {
   }, [])
 
   return (
-    <div className="grid">
-      {data?.games.map((game) => <Game 
-        cover={game.cover} 
-        coverLarge={''} 
-        date={game.date} 
-        key={game.id}
-        id={game.id} 
-        name={game.name} 
-        provider={game.provider}/>)}
+    <div className="gamesContainer">
+      <div className="grid">
+        {data?.games.map((game) => <Game
+          cover={game.cover}
+          coverLarge={game.coverLarge}
+          date={game.date}
+          key={game.id}
+          id={game.id}
+          name={game.name}
+          provider={game.provider} />)}
+      </div>
+      {
+        data ? <Filters
+          providers={data.providers}
+          groups={data.groups}
+        /> :
+          null
+      }
+
     </div>
   );
 }

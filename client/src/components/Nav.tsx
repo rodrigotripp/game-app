@@ -12,6 +12,9 @@ const Nav = ({
 }: props) => {
   return (
     <nav>
+      <div className={"titleContainer"}>
+        {loggedIn ? 'Welcome!' : ''}
+      </div>
       <div>
         <input
           className={"inputButton"}

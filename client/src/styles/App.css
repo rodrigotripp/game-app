@@ -1,19 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 .mainContainer {
   flex-direction: column;
   display: flex;
-  height: max-content
-}
-
-.titleContainer {
-  display: flex;
-  flex-direction: column;
-  font-size: 64px;
-  font-weight: bolder;
-  align-items: center;
 }
 
 .resultContainer, .historyItem { 

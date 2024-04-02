@@ -23,16 +23,7 @@ const Home = (props: props) => {
   return (
     <div className="mainContainer">
       <Nav onButtonClick={onButtonClick} username={username} loggedIn={loggedIn}></Nav>
-      <div className={"titleContainer"}>
-        {loggedIn ? 'Welcome!' : ''}
-      </div>
-      <div>
-        {
-          loggedIn
-            ? <Grid />
-            : ''
-        }
-      </div>
+      { loggedIn ? <Grid/> : '' }
     </div>
   )
 }
