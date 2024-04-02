@@ -27,7 +27,7 @@ const Grid = () => {
         setData(r);
       });
   }, [])
-
+  console.log({ selectedGroups, selectedProviders })
   return (
     <div className="gamesContainer">
       <div className="grid">

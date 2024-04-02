@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { type provider, type group} from '../types';
+import { type provider, type group } from '../types';
 import '../styles/filters.css'
 
 type props = {
@@ -24,39 +24,15 @@ export const Filters = ({
   }, [selectedProviders, selectedGroups]);
 
   const handleClickProv = (arg: provider): void => {
-    if (selectedProviders && !selectedProviders?.includes(String(arg.id))) {
-      setSelectedProviders(
-        [
-          ...selectedProviders,
-          String(arg.id)
-        ]
-      )
-    }
-    else {
-      setSelectedProviders(
-        [
-          ...selectedProviders.filter((prov) => prov !== String(arg.id))
-        ]
-      )
-    }
+    return selectedProviders && !selectedProviders?.includes(String(arg.id))
+      ? setSelectedProviders([...selectedProviders, String(arg.id)])
+      : setSelectedProviders([...selectedProviders.filter((prov) => prov !== String(arg.id))])
   }
 
-  const handleClickGroup = (arg: group, ): void => {
-    if (selectedGroups && !selectedGroups?.includes(arg)) {
-      setSelectedGroups(
-        [
-          ...selectedGroups,
-          arg
-        ]
-      )
-    }
-    else {
-      setSelectedGroups(
-        [
-          ...selectedGroups.filter((group) => group !== arg)
-        ]
-      )
-    }
+  const handleClickGroup = (arg: group,): void => {
+    return selectedGroups && !selectedGroups?.includes(arg)
+      ? setSelectedGroups([...selectedGroups, arg])
+      : setSelectedGroups([...selectedGroups.filter((group) => group !== arg)]);
   }
 
   return (
@@ -86,14 +62,14 @@ export const Filters = ({
         <ul className="menu">
           {groups.map((group) => {
             return (
-            <li
-            key={group.id} 
-            className={`menu-item ${selectedGroups?.includes(group) ? 'active' : ''}`}>
-              <button
-                data-games={group.games}
-                data-id={group.id}
-                onClick={() => handleClickGroup(group)}>{group.name}</button>
-            </li>)
+              <li
+                key={group.id}
+                className={`menu-item ${selectedGroups?.includes(group) ? 'active' : ''}`}>
+                <button
+                  data-games={group.games}
+                  data-id={group.id}
+                  onClick={() => handleClickGroup(group)}>{group.name}</button>
+              </li>)
           }
           )}
         </ul>
