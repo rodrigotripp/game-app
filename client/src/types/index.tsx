@@ -18,3 +18,9 @@ export type provider = {
   name: string
   logo: string
 }
+
+export type dataType = {
+  games: game[],
+  providers: provider[],
+  groups: group[]
+}

@@ -1,39 +1,41 @@
-import { useState, useEffect } from 'react';
-import { type provider, type group } from '../types';
+import { useEffect } from 'react';
+import { type provider, type group} from '../types';
 import '../styles/filters.css'
 
 type props = {
   providers: provider[]
   groups: group[]
+  selectedProviders: string[]
+  selectedGroups: group[]
+  setSelectedProviders: (p: string[]) => void;
+  setSelectedGroups: (p: group[]) => void;
 }
 
 export const Filters = ({
   providers,
-  groups
+  groups,
+  selectedGroups,
+  selectedProviders,
+  setSelectedGroups,
+  setSelectedProviders
 }: props) => {
-  const [open, setOpen] = useState(false);
-  const [selectedGroups, setSelectedGroups] = useState<group[]>([]);
-  const [selectedProviders, setSelectedProviders] = useState<provider[]>([]);
 
-  useEffect(() => {}, [selectedProviders, selectedGroups])
-
-  const handleOpen = () => {
-    setOpen(!open);
-  };
+  useEffect(() => {
+  }, [selectedProviders, selectedGroups]);
 
   const handleClickProv = (arg: provider): void => {
-    if (selectedProviders && !selectedProviders?.includes(arg)) {
+    if (selectedProviders && !selectedProviders?.includes(String(arg.id))) {
       setSelectedProviders(
         [
           ...selectedProviders,
-          arg
+          String(arg.id)
         ]
       )
     }
     else {
       setSelectedProviders(
         [
-          ...selectedProviders.filter((prov) => prov !== arg)
+          ...selectedProviders.filter((prov) => prov !== String(arg.id))
         ]
       )
     }
@@ -60,13 +62,13 @@ export const Filters = ({
   return (
     <div className='filtersContainer'>
       <div className='providers'>
-        <h2 onClick={handleOpen}>providers</h2>
+        <h2>providers</h2>
         <ul className="menu">
           {providers.map((provider) => {
             return (
               <li
                 key={provider.id}
-                className={`menu-item ${selectedProviders?.includes(provider) ? 'active' : ''}`}>
+                className={`menu-item ${selectedProviders?.includes(String(provider.id)) ? 'active' : ''}`}>
                 <button
                   data-id={provider.id}
                   id={String(provider.id)}
@@ -80,7 +82,7 @@ export const Filters = ({
         </ul>
       </div>
       <div className='groups'>
-        <h2 onClick={handleOpen}>groups</h2>
+        <h2>groups</h2>
         <ul className="menu">
           {groups.map((group) => {
             return (

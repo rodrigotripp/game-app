@@ -34,7 +34,6 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (_req, res) => {
   res.send("Auth API.\nPlease use POST /auth & POST /verify for authentication")
 })
-console.log();
 // Routes for games' information
 app.get("/all",(_req, res, next) => {
   res.send(fileData).status(200);
