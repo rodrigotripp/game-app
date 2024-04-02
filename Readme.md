@@ -2,6 +2,7 @@
 ## Available Scripts for # Finnplay test task for front-end developer
 In the project directory, you can run:
 
+## Using the Latest NodeJs version.
 ### `npm run install-all`
 ### `npm run start`
 
