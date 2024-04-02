@@ -27,7 +27,6 @@ const Grid = () => {
         setData(r);
       });
   }, [])
-  console.log({ selectedGroups, selectedProviders })
   return (
     <div className="gamesContainer">
       <div className="grid">
@@ -41,14 +40,15 @@ const Grid = () => {
           provider={game.provider} />)}
       </div>
       {
-        data ? <Filters
-          providers={data.providers}
-          selectedProviders={selectedProviders}
-          selectedGroups={selectedGroups}
-          setSelectedProviders={setSelectedProviders}
-          setSelectedGroups={setSelectedGroups}
-          groups={data.groups}
-        /> :
+        data ?
+          <Filters
+            providers={data.providers}
+            selectedProviders={selectedProviders}
+            selectedGroups={selectedGroups}
+            setSelectedProviders={setSelectedProviders}
+            setSelectedGroups={setSelectedGroups}
+            groups={data.groups}
+          /> :
           null
       }
     </div>

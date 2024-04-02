@@ -5,8 +5,8 @@ const jwt = require("jsonwebtoken")
 const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
 const adapter = new FileSync("./database.json");
-const gameData = new FileSync("./data.json");
-const lowGameData = low(gameData);
+// const gameData = new FileSync("./data.json");
+// const lowGameData = low(gameData);
 const db = low(adapter);
 const fs = require('node:fs');
 
@@ -35,18 +35,18 @@ app.get("/", (_req, res) => {
   res.send("Auth API.\nPlease use POST /auth & POST /verify for authentication")
 })
 // Routes for games' information
-app.get("/all",(_req, res, next) => {
+app.get("/all", (_req, res, next) => {
   res.send(fileData).status(200);
 });
-app.get("/games",(_req, res, next) => {
-  res.send({games:lowGameData.get('games').value()}).status(200);
-});
-app.get("/providers",(_req, res) => {
-  res.send({providers:lowGameData.get('providers').value()}).status(200);
-});
-app.get("/groups",(_req, res) => {
-  res.send({groups:lowGameData.get('groups').value()}).status(200);
-});
+// app.get("/games",(_req, res, next) => {
+//   res.send({games:lowGameData.get('games').value()}).status(200);
+// });
+// app.get("/providers",(_req, res) => {
+//   res.send({providers:lowGameData.get('providers').value()}).status(200);
+// });
+// app.get("/groups",(_req, res) => {
+//   res.send({groups:lowGameData.get('groups').value()}).status(200);
+// });
 
 // The auth endpoint that creates a new user record or logs a user based on an existing record
 app.post("/auth", (req, res) => {
