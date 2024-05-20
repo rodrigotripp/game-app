@@ -1,5 +1,5 @@
 
-## Available Scripts for # Finnplay test task for front-end developer
+## Available Scripts for casino app
 In the project directory, you can run:
 
 ## Using the Latest NodeJs version.
