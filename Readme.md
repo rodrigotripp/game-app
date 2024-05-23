@@ -27,7 +27,7 @@ Two users are allowed:
 
 #### Player view
 The page displays the list of games and the game filter. If a filter is configured, only games that match the filter criteria should be displayed, otherwise all games should be displayed. `Games that don't belong to any group shouldn't be displayed at all, even if the filter is not configured`
-
+<!-- 
 ##### Possible actions
 1. Set filter
 2. Set sorting
@@ -49,7 +49,7 @@ The page displays the list of games and the game filter. If a filter is configur
 7. User sessions should be stored on the server (in memory)
 9. No database is required. Keep all data in memory
 10. Using TypeScript will be considered a plus
-11. Post your code to github or bitbucket. Add readme how to run the application
+11. Post your code to github or bitbucket. Add readme how to run the application -->
 
 
 **Initial data is in `data.json` file**

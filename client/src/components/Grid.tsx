@@ -19,6 +19,7 @@ const Grid = () => {
   });
   const [selectedGroups, setSelectedGroups] = useState<group[]>([]);
   const [selectedProviders, setSelectedProviders] = useState<string[]>([]);
+  const [selectedFilters, setSelectedFilter] = useState<string[]>([]);
 
   useEffect(() => {
     fetch("http://localhost:3080/all")
@@ -47,6 +48,8 @@ const Grid = () => {
             selectedGroups={selectedGroups}
             setSelectedProviders={setSelectedProviders}
             setSelectedGroups={setSelectedGroups}
+            selectedFilters={selectedFilters}
+            setSelectedFilters={setSelectedFilter}
             groups={data.groups}
           /> :
           null

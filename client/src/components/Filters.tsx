@@ -9,6 +9,8 @@ type props = {
   selectedGroups: group[]
   setSelectedProviders: (p: string[]) => void;
   setSelectedGroups: (p: group[]) => void;
+  selectedFilters: string[];
+  setSelectedFilters: (p: string[]) => void;
 }
 
 export const Filters = ({
@@ -16,62 +18,50 @@ export const Filters = ({
   groups,
   selectedGroups,
   selectedProviders,
+  selectedFilters,
   setSelectedGroups,
-  setSelectedProviders
+  setSelectedProviders,
+  setSelectedFilters
 }: props) => {
 
   useEffect(() => {
-  }, [selectedProviders, selectedGroups]);
 
-  const handleClickProv = (arg: provider): void => {
-    return selectedProviders && !selectedProviders?.includes(String(arg.id))
-      ? setSelectedProviders([...selectedProviders, String(arg.id)])
-      : setSelectedProviders([...selectedProviders.filter((prov) => prov !== String(arg.id))])
+    
+
+  }, [selectedFilters]);
+
+  const handleClick = (arg: provider | group) => {
+    selectedFilters && !selectedFilters?.includes(arg.name)
+      ? setSelectedFilters([...selectedFilters, arg.name])
+      : setSelectedFilters([...selectedFilters.filter((el) => el !== arg.name)])
   }
 
-  const handleClickGroup = (arg: group,): void => {
-    return selectedGroups && !selectedGroups?.includes(arg)
-      ? setSelectedGroups([...selectedGroups, arg])
-      : setSelectedGroups([...selectedGroups.filter((group) => group !== arg)]);
-  }
+  type filterProps = group | provider;
+
+  const Filter = (arg: filterProps) => (
+    <li
+      className={`menu-item ${selectedFilters?.includes(String(arg.name)) ? 'active' : ''}`}>
+      <button
+        data-id={arg.id}
+        id={String(arg.id)}
+        onClick={() => handleClick(arg)}>
+        {arg.name}
+      </button>
+    </li>
+  )
 
   return (
     <div className='filtersContainer'>
       <div className='providers'>
         <h2>providers</h2>
         <ul className="menu">
-          {providers.map((provider) => {
-            return (
-              <li
-                key={provider.id}
-                className={`menu-item ${selectedProviders?.includes(String(provider.id)) ? 'active' : ''}`}>
-                <button
-                  data-id={provider.id}
-                  id={String(provider.id)}
-                  onClick={() => handleClickProv(provider)}>
-                  {provider.name}
-                </button>
-              </li>
-            )
-          }
-          )}
+          {providers.map((provider) => <Filter key={provider.id} {...provider} />)}
         </ul>
       </div>
       <div className='groups'>
         <h2>groups</h2>
         <ul className="menu">
-          {groups.map((group) => {
-            return (
-              <li
-                key={group.id}
-                className={`menu-item ${selectedGroups?.includes(group) ? 'active' : ''}`}>
-                <button
-                  data-games={group.games}
-                  data-id={group.id}
-                  onClick={() => handleClickGroup(group)}>{group.name}</button>
-              </li>)
-          }
-          )}
+          {groups.map((group) => <Filter key={group.id} {...group} />)}
         </ul>
       </div>
     </div>
