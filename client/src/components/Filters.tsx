@@ -5,50 +5,41 @@ import '../styles/filters.css'
 type props = {
   providers: provider[]
   groups: group[]
-  selectedProviders: string[]
-  selectedGroups: group[]
-  setSelectedProviders: (p: string[]) => void;
-  setSelectedGroups: (p: group[]) => void;
-  selectedFilters: string[];
-  setSelectedFilters: (p: string[]) => void;
+  selectedFilters: (group | provider)[];
+  setSelectedFilters: (p: (group | provider)[]) => void;
 }
 
 export const Filters = ({
   providers,
   groups,
-  selectedGroups,
-  selectedProviders,
   selectedFilters,
-  setSelectedGroups,
-  setSelectedProviders,
   setSelectedFilters
 }: props) => {
 
   useEffect(() => {
-
-    
-
   }, [selectedFilters]);
 
   const handleClick = (arg: provider | group) => {
-    selectedFilters && !selectedFilters?.includes(arg.name)
-      ? setSelectedFilters([...selectedFilters, arg.name])
-      : setSelectedFilters([...selectedFilters.filter((el) => el !== arg.name)])
+    selectedFilters && !selectedFilters?.find((el) => el.id === arg.id)
+      ? setSelectedFilters([...selectedFilters, arg])
+      : setSelectedFilters([...selectedFilters.filter((el) => el.id !== arg.id)]) 
   }
 
   type filterProps = group | provider;
 
-  const Filter = (arg: filterProps) => (
-    <li
-      className={`menu-item ${selectedFilters?.includes(String(arg.name)) ? 'active' : ''}`}>
-      <button
-        data-id={arg.id}
-        id={String(arg.id)}
-        onClick={() => handleClick(arg)}>
-        {arg.name}
-      </button>
-    </li>
-  )
+  const Filter = (arg: filterProps) => {
+    return (
+      <li
+        className={`menu-item ${!!selectedFilters?.find((el) => el.id === arg.id) ? 'active' : ''}`}>
+        <button
+          data-id={arg.id}
+          id={String(arg.id)}
+          onClick={() => handleClick(arg)}>
+          {arg.name}
+        </button>
+      </li>
+    )
+  }
 
   return (
     <div className='filtersContainer'>

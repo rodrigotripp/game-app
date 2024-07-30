@@ -10,13 +10,14 @@ export type game = {
 export type group = {
   id: number
   name: string
-  games: number[]
+  games?: number[]
 }
 
 export type provider = {
   id: number
   name: string
-  logo: string
+  logo?: string
+  games?: number[]
 }
 
 export type dataType = {

@@ -1,32 +1,31 @@
-import { type group, type dataType, type game } from './types/index';
+import { type group, type dataType, type provider } from './types/index';
 
-const findGameInGroup = (selectedGroups: group[], game: game) => {
-  for (let group of selectedGroups) {
-    if (group.games.includes(game.id)) {
-      return true;
-    }
-    return false;
-  }
+function checkIfGameInGroup(group: group, id: number) {
+  return group.games?.includes(id);
 }
 
 export const filteredData = (
   data: dataType,
-  selectedProviders: string[],
-  selectedGroups: group[]
+  selectedFilters: (group | provider)[]
 ) => {
+
   return data.games.filter(
     (game) => {
-      const gameByProv = selectedProviders.includes(String(game.provider));
-      const emptySelections = selectedProviders.length === 0 && selectedGroups.length === 0;
-      if (gameByProv || findGameInGroup(selectedGroups, game)) {
+      // no selection
+      if (!selectedFilters.length) {
         return game;
       }
+      // when filtered
+      return selectedFilters.find((filter) => {
+        if (Object.hasOwn(filter, 'games')) {
+          return checkIfGameInGroup(filter, game.id) ? game : null;
+        }
 
-      else if (emptySelections) {
-        return game;
-      }
+        else {
+          return !!selectedFilters.find((filter) => filter.id === game.provider) ? game : null
+        }
+      })
 
-      return null
     }
   )
 }
