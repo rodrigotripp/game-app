@@ -4,7 +4,6 @@ export const Game = (props: game) => {
   const {
     date,
     cover,
-    coverLarge,
     id,
     provider,
     name,
@@ -17,7 +16,6 @@ export const Game = (props: game) => {
         src={cover} 
         data-date={String(date)} 
         data-provider={provider}
-        srcSet={`${coverLarge} 1280`}
       />
       <figcaption>{name}</figcaption>
     </figure>
