@@ -8,24 +8,17 @@ export const filteredData = (
   data: dataType,
   selectedFilters: (group | provider)[]
 ) => {
+  if (!selectedFilters.length) {
+    return data.games;
+  }
 
-  return data.games.filter(
-    (game) => {
-      // no selection
-      if (!selectedFilters.length) {
-        return game;
+  return data.games.filter((game) => {
+    return selectedFilters.some((filter) => {
+      if ('games' in filter) {
+        return checkIfGameInGroup(filter, game.id);
+      } else {
+        return filter.id === game.provider;
       }
-      // when filtered
-      return selectedFilters.find((filter) => {
-        if (Object.hasOwn(filter, 'games')) {
-          return checkIfGameInGroup(filter, game.id) ? game : null;
-        }
-
-        else {
-          return !!selectedFilters.find((filter) => filter.id === game.provider) ? game : null
-        }
-      })
-
-    }
-  )
-}
+    });
+  });
+};
